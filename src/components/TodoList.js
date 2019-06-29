@@ -19,13 +19,16 @@ export default class TodoList extends Component {
   _isMounted = false;
   constructor(props) {
     super(props)
-    this.state = {todos: []}
+    this.state = {
+      todos: [], 
+      scoopy: 'https://scoopy-do-backend.herokuapp.com/todos',
+      scoopyAdd: 'https://scoopy-do-backend.herokuapp.com/todos/add',
+    } 
   }
 
   componentDidMount() {
     this._isMounted = true;
-    const scoopy = 'https://scoopy-do-backend.herokuapp.com/todos'
-    axios.get(scoopy || 'http://localhost:4000/todos/')
+    axios.get(this.state.scoopy || 'http://localhost:4000/todos/')
       .then(response => {
         this.setState({ todos: response.data })
       })
@@ -39,7 +42,7 @@ export default class TodoList extends Component {
   }
 
   componentDidUpdate() {
-    axios.get('http://localhost:4000/todos/')
+    axios.get(this.state.scoopy || 'http://localhost:4000/todos/')
       .then(response => {
         this.setState({ todos: response.data })
       })

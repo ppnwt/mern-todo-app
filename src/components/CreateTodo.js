@@ -17,7 +17,9 @@ export default class CreateTodo extends Component {
       todoDescription: '',
       todoResponsible: '',
       todoPriority: '',
-      todoCompleted: false
+      todoCompleted: false,
+      scoopy: 'https://scoopy-do-backend.herokuapp.com/todos',
+      scoopyAdd: 'https://scoopy-do-backend.herokuapp.com/todos/add'
     }
   }
 
@@ -70,7 +72,7 @@ export default class CreateTodo extends Component {
       todo_completed: this.state.todoCompleted,
     }
 
-    axios.post('http://localhost:4000/todos/add', newTodo)
+    axios.post(this.state.scoopyAdd || 'http://localhost:4000/todos/add', newTodo)
       .then(res => console.log(res.data))
 
     this.setState({
