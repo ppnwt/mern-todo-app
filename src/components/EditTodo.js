@@ -19,13 +19,13 @@ export default class EditTodo extends Component {
       todoResponsible: '',
       todoPriority: '',
       todoCompleted: false,
-      scoopy: 'https://scoopy-do-backend.herokuapp.com/todos',
-      scoopyUpdate: 'https://scoopy-do-backend.herokuapp.com/todos/add',
+      scoopy: 'https://scoopy-do-backend.herokuapp.com/todos/',
+      scoopyUpdate: 'https://scoopy-do-backend.herokuapp.com/todos/update/',
     }
   }
 
   componentDidMount(){
-    axios.get(scoopy+this.props.match.params.id || 'http://localhost:4000/todos/'+this.props.match.params.id)
+    axios.get(this.state.scoopy+this.props.match.params.id || 'http://localhost:4000/todos/'+this.props.match.params.id)
       .then(response => {
           this.setState({
             todoTitle: response.data.todo_title,
@@ -81,7 +81,7 @@ export default class EditTodo extends Component {
       todo_completed: this.state.todoCompleted      
     }
 
-    axios.post(scoopyUpdate+this.props.match.params.id || 'http://localhost:4000/todos/update/'+this.props.match.params.id, object)
+    axios.post(this.state.scoopyUpdate+this.props.match.params.id || 'http://localhost:4000/todos/update/'+this.props.match.params.id, object)
       .then(res => console.log(res.data))
 
     this.props.history.push('/')

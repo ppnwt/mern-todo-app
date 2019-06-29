@@ -21,7 +21,7 @@ export default class TodoList extends Component {
     super(props)
     this.state = {
       todos: [], 
-      scoopy: 'https://scoopy-do-backend.herokuapp.com/todos',
+      scoopy: 'https://scoopy-do-backend.herokuapp.com/todos/',
       scoopyAdd: 'https://scoopy-do-backend.herokuapp.com/todos/add',
     } 
   }
