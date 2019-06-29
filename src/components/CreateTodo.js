@@ -80,6 +80,8 @@ export default class CreateTodo extends Component {
       todoPriority: '',
       todoCompleted: false
     })
+
+    this.props.history.push('/')
   }
 
   render(){
