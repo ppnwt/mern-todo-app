@@ -25,10 +25,12 @@ export default class TodoList extends Component {
       scoopyAdd: 'https://scoopy-do-backend.herokuapp.com/todos/add',
     } 
   }
-
+  
   componentDidMount() {
+    const API_ENDPOINT = process.env.NODE_ENV === 'development' ? 'http://localhost:4000/todos/' : this.state.scoopy;
+    
     this._isMounted = true;
-    axios.get(this.state.scoopy || 'http://localhost:4000/todos/')
+    axios.get(API_ENDPOINT)
       .then(response => {
         this.setState({ todos: response.data })
       })
@@ -42,7 +44,8 @@ export default class TodoList extends Component {
   }
 
   componentDidUpdate() {
-    axios.get(this.state.scoopy || 'http://localhost:4000/todos/')
+    const API_ENDPOINT = process.env.NODE_ENV === 'development' ? 'http://localhost:4000/todos/' : this.state.scoopy;
+    axios.get(API_ENDPOINT)
       .then(response => {
         this.setState({ todos: response.data })
       })
@@ -53,7 +56,7 @@ export default class TodoList extends Component {
 
   TodoList(){
     return this.state.todos.map(function(currentTodo, i) {
-      return <Todo todo={currentTodo} key={i} />
+      return <Todo todo={currentTodo} key={i} /> 
     })
   }
 
