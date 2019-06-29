@@ -24,7 +24,8 @@ export default class TodoList extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    axios.get('http://localhost:4000/todos/')
+    const scoopy = 'https://scoopy-do-backend.herokuapp.com/todos'
+    axios.get(scoopy || 'http://localhost:4000/todos/')
       .then(response => {
         this.setState({ todos: response.data })
       })
