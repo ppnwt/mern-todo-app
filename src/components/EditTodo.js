@@ -12,6 +12,8 @@ export default class EditTodo extends Component {
     this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this)
     this.onchangeTodoCompleted = this.onchangeTodoCompleted.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+    this.API_ENDPOINT = process.env.NODE_ENV === 'development' ? 'http://localhost:4000/todos/' : 'https://scoopy-do-backend.herokuapp.com/todos/';
+    this.API_ENDPOINT_UPDATE = process.env.NODE_ENV === 'development' ? 'http://localhost:4000/todos/update' : 'https://scoopy-do-backend.herokuapp.com/todos/update';
 
     this.state = {
       todoTitle: '',
@@ -19,13 +21,11 @@ export default class EditTodo extends Component {
       todoResponsible: '',
       todoPriority: '',
       todoCompleted: false,
-      scoopy: 'https://scoopy-do-backend.herokuapp.com/todos/',
-      scoopyUpdate: 'https://scoopy-do-backend.herokuapp.com/todos/update/',
     }
   }
 
   componentDidMount(){
-    axios.get(this.state.scoopy+this.props.match.params.id || 'http://localhost:4000/todos/'+this.props.match.params.id)
+    axios.get(this.API_ENDPOINT+this.props.match.params.id)
       .then(response => {
           this.setState({
             todoTitle: response.data.todo_title,
@@ -81,7 +81,7 @@ export default class EditTodo extends Component {
       todo_completed: this.state.todoCompleted      
     }
 
-    axios.post(this.state.scoopyUpdate+this.props.match.params.id || 'http://localhost:4000/todos/update/'+this.props.match.params.id, object)
+    axios.post(this.API_ENDPOINT_UPDATE+this.props.match.params.id, object)
       .then(res => console.log(res.data))
 
     this.props.history.push('/')

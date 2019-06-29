@@ -12,14 +12,13 @@ export default class CreateTodo extends Component {
     this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
 
+    this.API_ENDPOINT = process.env.NODE_ENV === 'development' ? 'http://localhost:4000/todos/add' : 'https://scoopy-do-backend.herokuapp.com/todos/add';
     this.state = {
       todoTitle: '',
       todoDescription: '',
       todoResponsible: '',
       todoPriority: '',
-      todoCompleted: false,
-      scoopy: 'https://scoopy-do-backend.herokuapp.com/todos',
-      scoopyAdd: 'https://scoopy-do-backend.herokuapp.com/todos/add'
+      todoCompleted: false
     }
   }
 
@@ -72,7 +71,7 @@ export default class CreateTodo extends Component {
       todo_completed: this.state.todoCompleted,
     }
 
-    axios.post(this.state.scoopyAdd || 'http://localhost:4000/todos/add', newTodo)
+    axios.post(this.API_ENDPOINT, newTodo)
       .then(res => console.log(res.data))
 
     this.setState({

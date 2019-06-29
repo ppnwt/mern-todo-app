@@ -19,18 +19,16 @@ export default class TodoList extends Component {
   _isMounted = false;
   constructor(props) {
     super(props)
+    this.API_ENDPOINT = process.env.NODE_ENV === 'development' ? 'http://localhost:4000/todos/' : 'https://scoopy-do-backend.herokuapp.com/todos/';
     this.state = {
-      todos: [], 
-      scoopy: 'https://scoopy-do-backend.herokuapp.com/todos/',
-      scoopyAdd: 'https://scoopy-do-backend.herokuapp.com/todos/add',
+      todos: []
     } 
   }
   
   componentDidMount() {
-    const API_ENDPOINT = process.env.NODE_ENV === 'development' ? 'http://localhost:4000/todos/' : this.state.scoopy;
-    
     this._isMounted = true;
-    axios.get(API_ENDPOINT)
+    console.log(this.API_ENDPOINT)
+    axios.get(this.API_ENDPOINT)
       .then(response => {
         this.setState({ todos: response.data })
       })
@@ -44,8 +42,7 @@ export default class TodoList extends Component {
   }
 
   componentDidUpdate() {
-    const API_ENDPOINT = process.env.NODE_ENV === 'development' ? 'http://localhost:4000/todos/' : this.state.scoopy;
-    axios.get(API_ENDPOINT)
+    axios.get(this.API_ENDPOINT)
       .then(response => {
         this.setState({ todos: response.data })
       })
