@@ -1,7 +1,7 @@
 ## Tech Stack
 
 - React
-- Node js
+- Node js // Express
 - Mongodb
 - Mongoose
 
