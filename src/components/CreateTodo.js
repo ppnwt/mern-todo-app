@@ -152,7 +152,6 @@ export default class CreateTodo extends Component {
             <div className="form-group">
               <input type="submit" value="Submit" className="btn btn-primary"/>
             </div>
-
           </form>
         </div>
     ) 
