@@ -18,6 +18,9 @@ export default class NavbarTodo extends Component {
             <li className="navbar-item">
               <Link to="/create" className="nav-link">Add new</Link>
             </li>
+            <li className="navbar-item">
+              <Link to="/login" className="nav-link">Test Login</Link>
+            </li>
           </ul>
         </div>
       </nav>

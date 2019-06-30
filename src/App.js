@@ -6,6 +6,7 @@ import CreateTodo from "./components/CreateTodo"
 import EditTodo from "./components/EditTodo"
 import TodoList from "./components/TodoList"
 import NavbarTodo from "./components/NavbarTodo"
+import Login from "./components/Login"
 import logo from "./alien.png"
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/todos" exact component={TodoList} />
       <Route path="/edit/:id" exact component={EditTodo} />
       <Route path="/create" exact component={CreateTodo} />
+      <Route path="/login" exact component={Login} />
       </div>
     </Router>
   );
